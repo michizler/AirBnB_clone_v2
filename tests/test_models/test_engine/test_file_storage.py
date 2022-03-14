@@ -30,6 +30,7 @@ class test_fileStorage(unittest.TestCase):
 
     def test_new(self):
         """ New object is correctly added to __objects """
+        global obj, temp
         new = BaseModel()
         for obj in storage.all().values():
             temp = obj
@@ -62,6 +63,7 @@ class test_fileStorage(unittest.TestCase):
 
     def test_reload(self):
         """ Storage file is successfully loaded to __objects """
+        global loaded
         new = BaseModel()
         storage.save()
         storage.reload()
@@ -96,6 +98,7 @@ class test_fileStorage(unittest.TestCase):
 
     def test_key_format(self):
         """ Key is properly formatted """
+        global temp
         new = BaseModel()
         _id = new.to_dict()['id']
         for key in storage.all().keys():
