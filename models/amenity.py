@@ -2,7 +2,7 @@
 """
 Amenity class module
 """
-from OS import environ
+from os import environ
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
