@@ -3,6 +3,8 @@
 import uuid
 from datetime import datetime
 
+import models
+
 
 class BaseModel:
     """A base class for all hbnb models"""
@@ -42,3 +44,11 @@ class BaseModel:
         dictionary['created_at'] = self.created_at.isoformat()
         dictionary['updated_at'] = self.updated_at.isoformat()
         return dictionary
+
+    def delete(self):
+        """
+        Delete the current instance from the storage
+        """
+
+        k = "{}.{}".format(type(self).__name__, self.id)
+        del models.storage.__objects[k]
