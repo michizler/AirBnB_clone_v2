@@ -9,6 +9,7 @@ from fabric.api import run
 
 env.hosts = ["3.235.21.36", "3.83.35.54"]
 
+
 def do_pack():
     """Create a tar gzipped archive of the directory web_static."""
     dt = datetime.utcnow()
