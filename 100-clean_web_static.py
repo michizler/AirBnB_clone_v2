@@ -12,7 +12,9 @@ def do_clean(number=0):
     Delete all archives older than number days
     """
 
-    number = 1 if int(number) == = 0 else int(number)
+    if (int(number) == 0) :
+        number = 1
+    else: int(number)
 
     archives = sorted(os.listdir("versions"))
     [archives.pop() for i in range(number)]
