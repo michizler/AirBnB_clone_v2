@@ -18,11 +18,12 @@ The default value of text is "is cool"
 """
 
 from flask import Flask
+from flask import abort
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', strict_slashes=False)
 def hello_hbnb():
     """
     Display Hello HBNB!
@@ -30,23 +31,27 @@ def hello_hbnb():
     return 'Hello HBNB!'
 
 
-@app.route('/hbnb')
+@app.route('/hbnb', strict_slashes=False)
 def hbnb():
+    """Display HBNB!"""
     return 'HBNB'
 
 
-@app.route('/c/<text>')
+@app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
+    """Display C is ..."""
     return 'C ' + text.replace('_', ' ')
 
 
-@app.route('/python/<text>')
+@app.route('/python/<text>', strict_slashes=False)
 def python_text(text='is cool'):
+    """Display python is..."""
     return 'Python ' + text.replace('_', ' ')
 
 
-@app.route('/number/<int n>')
+@app.route('/number/<int n>', strict_slashes=False)
 def number(n):
+    """Display n is a number"""
     return str(n) + ' is a number'
 
 
