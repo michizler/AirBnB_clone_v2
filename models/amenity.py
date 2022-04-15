@@ -1,27 +1,23 @@
 #!/usr/bin/python3
-"""
-Amenity class module
-"""
-from os import environ
-from sqlalchemy import Column, String
+"""Defines the Amenity class."""
+from models.base_model import Base
+from models.base_model import BaseModel
+from sqlalchemy import Column
+from sqlalchemy import String
 from sqlalchemy.orm import relationship
-
-from models import BaseModel, Base
-from models.place import place_amenity
-
-storage_engine = environ.get("HBNB_TYPE_STORAGE")
 
 
 class Amenity(BaseModel, Base):
+    """Represents an Amenity for a MySQL database.
+
+    Inherits from SQLAlchemy Base and links to the MySQL table amenities.
+
+    Attributes:
+        __tablename__ (str): The name of the MySQL table to store Amenities.
+        name (sqlalchemy String): The amenity name.
+        place_amenities (sqlalchemy relationship): Place-Amenity relationship.
     """
-    Amenity Class
-    """
-    if (storage_engine == "db"):
-        __tablename__ = "amenities"
-        name = Column(String(128), nullable=False)
-        place_amenity = relationship(
-            "Place",
-            secondary=place_amenity, back_populates="amenities"
-        )
-    else:
-        name = ""
+    __tablename__ = "amenities"
+    name = Column(String(128), nullable=False)
+    place_amenities = relationship("Place", secondary="place_amenity",
+                                   viewonly=False)
